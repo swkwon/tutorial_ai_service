@@ -1,0 +1,27 @@
+# .gitignore 파일 예제
+
+# Python 관련 무시 파일
+app/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# 환경 변수 파일
+.env
+
+# 가상 환경 폴더
+venv/
+.venv/
+
+# 모델 폴더 내의 .gguf 파일 무시
+model/*.gguf
+
+# 기타 무시 파일
+*.DS_Store
+*.swp
