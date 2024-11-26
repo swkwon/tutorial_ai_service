@@ -56,7 +56,9 @@ ollama는 모델을 사용하지 않으면 약 5분 뒤에 자동으로 모델�
 3. **환경 변수 설정**:
     `.env` 파일을 생성하고 필요한 환경 변수를 설정합니다.
     ```properties
-    TARGET_MODEL=your_model_name_here
+    # 코드에서 원하는 변수를 사용합니다.
+    EEVE_MODEL=EEVE-Korean-10.8B:latest
+    LLAMA_MODEL=llama-3.2-korean:latest
     ```
 
 ## 사용 방법
@@ -70,5 +72,5 @@ ollama는 모델을 사용하지 않으면 약 5분 뒤에 자동으로 모델�
 2. **웹 브라우저에서 접속**:
     웹 브라우저를 열고 `http://localhost:8000`에 접속합니다.
 
-3. **example**
+3. **example 폴더**:
     example 폴더는 RemoteRunnable을 사용하여 prompt, llm, translator에 접근하는 방법이 있습니다. 원격으로 llm에 접근하여 코드 레벨에서 원하는 작업을 할 수 있습니다.
