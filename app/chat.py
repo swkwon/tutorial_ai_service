@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-target_model = os.getenv("LLAMA_MODEL")
+target_model = os.getenv("EEVE_MODEL")
 llm = ChatOllama(model=target_model)
 
 prompt = ChatPromptTemplate.from_messages(

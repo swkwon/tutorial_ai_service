@@ -2,7 +2,7 @@ from langserve import RemoteRunnable
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
-llm = RemoteRunnable("http://localhost:8000/llm")
+llm = RemoteRunnable("http://localhost:9100/llm")
 
 prompt = ChatPromptTemplate.from_template(
     "다음 내용을 여학생이 하는 말처럼 꾸며줘:\n{topic}"
