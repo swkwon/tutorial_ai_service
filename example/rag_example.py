@@ -43,5 +43,5 @@ rag_chain = (
      | StrOutputParser()
 )
 
-for chunk in rag_chain.stream("대한민국에는 어떤 행정부가 있지?"):
+for chunk in rag_chain.stream("대한민국 헌법 상 헌법재판소가 하는 일은 뭐지?"):
     print(chunk, end="", flush=True)
