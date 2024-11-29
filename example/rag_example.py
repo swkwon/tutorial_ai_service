@@ -7,6 +7,9 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain import hub
 from langchain_core.runnables import RunnablePassthrough
+import os
+os.environ['CURL_CA_BUNDLE'] = ''
+
 
 loader = PyPDFLoader(r"대한민국헌법(헌법)(제00010호)(19880225).pdf")
 pages = loader.load_and_split()
@@ -16,6 +19,8 @@ docs = text_splitter.split_documents(pages)
 model_name = "jhgan/ko-sbert-nli"
 model_kwargs = {'device': 'cpu'}
 encode_kwargs = {'normalize_embeddings': True}
+# 허깅페이스 관련 SSL 에러
+# https://stackoverflow.com/questions/75110981/sslerror-httpsconnectionpoolhost-huggingface-co-port-443-max-retries-exce
 embedding = HuggingFaceEmbeddings(
     model_name=model_name, 
     model_kwargs=model_kwargs, 
@@ -29,14 +34,14 @@ prompt = hub.pull("rlm/rag-prompt")
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
-llm = RemoteRunnable("http://localhost:9100/llm")
+llm = RemoteRunnable("http://localhost:8000/llm")
 
 rag_chain = (
-    {"context": retriever|format_docs, "question": RunnablePassthrough()
+    {"context": retriever|format_docs, "question": RunnablePassthrough()}
      | prompt
      | llm
-     | StrOutputParser()}
+     | StrOutputParser()
 )
 
-for chunk in rag_chain.stream({"question": "대한민국 헌법에 대해 설명해줘."}):
-    print(chunk, end="")
+for chunk in rag_chain.stream("대한민국에는 어떤 행정부가 있지?"):
+    print(chunk, end="", flush=True)
