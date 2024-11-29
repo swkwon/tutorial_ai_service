@@ -12,9 +12,6 @@ dist/
 build/
 *.log
 
-# 환경 변수 파일
-.env
-
 # 가상 환경 폴더
 venv/
 .venv/
